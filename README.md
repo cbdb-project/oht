@@ -1,4 +1,10 @@
-# oht
+# Official History Data Collecting Tool (OHT)
+
+# Description
+
+This is the front-end crowdsourcing platform of our China dynastic histories
+
+https://github.com/cbdb-project/China-official-histories-open-training-data
 
 ## Build Setup
 

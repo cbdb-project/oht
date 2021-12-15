@@ -263,7 +263,7 @@ export default {
       // })
     },
     update_person_name_by_cbdb_id: function(){
-      let query_url = global_var.url + "/official_hist_tagging/query_person_name_by_personid.php?person_id=" + this.person_id;
+      let query_url = global_var.url_global + "/official_hist_tagging/query_person_name_by_personid.php?person_id=" + this.person_id;
       let _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -275,7 +275,7 @@ export default {
       });
     },
     update_content_name_by_cbdb_id: function(){
-      let query_url = global_var.url + "/official_hist_tagging/query_person_name_by_personid.php?person_id=" + this.content_personid;
+      let query_url = global_var.url_global + "/official_hist_tagging/query_person_name_by_personid.php?person_id=" + this.content_personid;
       let _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -298,7 +298,7 @@ export default {
 
     },
     load_subjects_in_section:function(){
-      let query_url = global_var.url + "/official_hist_tagging/query_subjects_in_section.php?chapter_id=" + this.chapter_id;
+      let query_url = global_var.url_global + "/official_hist_tagging/query_subjects_in_section.php?chapter_id=" + this.chapter_id;
       console.log(query_url)
       let _this = this;
       axios.get(query_url)
@@ -313,7 +313,7 @@ export default {
     remove_tag:function(section_id, tag_id){
       let confirm_delete = confirm("Confirm to delete this record");
       if (confirm_delete == true){
-        let query_url = global_var.url + "/official_hist_tagging/delete_main.php?tag_id="+tag_id;
+        let query_url = global_var.url_global + "/official_hist_tagging/delete_main.php?tag_id="+tag_id;
         let _this = this;
         axios.get(query_url)
         .then(function (response) {
@@ -347,7 +347,7 @@ export default {
       this.content_person_name = "";
       this.person_id = current_biog_subject_id;
       this.person_name = current_biog_subject_name;
-      let query_url = global_var.url + "/official_hist_tagging/query_type_list.php";
+      let query_url = global_var.url_global + "/official_hist_tagging/query_type_list.php";
       let _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -371,7 +371,7 @@ export default {
       if (this.content_person_name == undefined){
         this.content_person_name = ""
       }
-      let query_url = global_var.url + `/official_hist_tagging/add_main.php?biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&section_id=${this.single_section_id}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
+      let query_url = global_var.url_global + `/official_hist_tagging/add_main.php?biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&section_id=${this.single_section_id}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
       // console.log(query_url);
       let _this = this;
       axios.get(query_url)
@@ -386,7 +386,7 @@ export default {
       this.chapter_id = "";
     },
     call_search_api: function(){
-      let query_url = global_var.url+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
+      let query_url = global_var.url_global+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
       let _this = this;
       // _this.search_result_items = [{word:"Searching...", content: "", id: 0}]
       axios.get(query_url)
@@ -399,7 +399,7 @@ export default {
     },
     load_section: function(single_tag_id){
       this.overlay = "!overlay";
-      let query_url = global_var.url + "/official_hist_tagging/query_type_list.php";
+      let query_url = global_var.url_global + "/official_hist_tagging/query_type_list.php";
       let _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -407,7 +407,7 @@ export default {
       }).catch(function (error) {
         console.log(error);
       });
-      query_url = global_var.url + "/official_hist_tagging/query_tags.php?tag_id=" + single_tag_id;
+      query_url = global_var.url_global + "/official_hist_tagging/query_tags.php?tag_id=" + single_tag_id;
       _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -446,7 +446,7 @@ export default {
         this.add_data();
         this.overlay = false;
       }else{
-        let query_url = global_var.url + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
+        let query_url = global_var.url_global + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
         console.log(query_url);
         let _this = this;
         axios.get(query_url)
@@ -499,7 +499,7 @@ export default {
       this.data_subtype = e;
     },
     get_data_subtype_list_for_select: function(){
-      let query_url = global_var.url + "/official_hist_tagging/query_subtype_list_by_typeid.php?typeid="+this.data_type_id;
+      let query_url = global_var.url_global + "/official_hist_tagging/query_subtype_list_by_typeid.php?typeid="+this.data_type_id;
       let _this = this;
       axios.get(query_url)
       .then(function (response) {

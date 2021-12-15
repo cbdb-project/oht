@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     load_section: function(single_section_id){
-      let query_url = global_var.url + "/official_hist_tagging/query_type_list.php";
+      let query_url = global_var.url_global + "/official_hist_tagging/query_type_list.php";
       let _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -134,7 +134,7 @@ export default {
         console.log(error);
       });
       this.search_term = single_section_id;
-      query_url = global_var.url + "/official_hist_tagging/query_tags.php?tag_id=" + single_section_id;
+      query_url = global_var.url_global + "/official_hist_tagging/query_tags.php?tag_id=" + single_section_id;
       _this = this;
       axios.get(query_url)
       .then(function (response) {
@@ -156,7 +156,7 @@ export default {
       });
     },
     submit_data: function(){
-      let query_url = global_var.url + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}`;
+      let query_url = global_var.url_global + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}`;
       console.log(query_url);
       axios.get(query_url)
       .then(function (response) {
@@ -178,7 +178,7 @@ export default {
       console.log(this.data_subtype);
     },
     get_data_subtype_list_for_select: function(){
-      let query_url = global_var.url + "/official_hist_tagging/query_subtype_list_by_typeid.php?typeid="+this.data_type_id;
+      let query_url = global_var.url_global + "/official_hist_tagging/query_subtype_list_by_typeid.php?typeid="+this.data_type_id;
       let _this = this;
       axios.get(query_url)
       .then(function (response) {

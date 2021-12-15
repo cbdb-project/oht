@@ -1,8 +1,8 @@
 <template>
 <script>
-    const url_global = 'https://oopus.info';
+    const url = 'https://oopus.info';
     export default {
-        url_global,
+        url,
     }
 </script>
 </template>

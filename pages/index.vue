@@ -386,6 +386,7 @@ export default {
       this.chapter_id = "";
     },
     call_search_api: function(){
+      // let query_url = global_var.url+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
       let query_url = global_var.url+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
       let _this = this;
       // _this.search_result_items = [{word:"Searching...", content: "", id: 0}]

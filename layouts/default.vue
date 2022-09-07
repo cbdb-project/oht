@@ -110,7 +110,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Official History Data Collecting Tool'
+      title: 'Dynastic History Data Collecting Tool'
     }
   }
 }

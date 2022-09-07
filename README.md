@@ -1,4 +1,4 @@
-# Official History Data Collecting Tool (OHT)
+# Dynastic History Data Collecting Tool (OHT)
 
 # Description
 

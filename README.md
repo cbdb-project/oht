@@ -4,7 +4,7 @@
 
 This is the front-end crowdsourcing platform for the China dynastic histories open training data subproject
 
-https://github.com/cbdb-project/China-official-histories-open-training-data
+https://github.com/cbdb-project/China-dynastic-histories-open-training-data
 
 ## Build Setup
 

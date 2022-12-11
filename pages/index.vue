@@ -455,7 +455,13 @@ export default {
           console.log(response.data);
           let current_section_id = parseInt(_this.single_section_id)-1;
           let tag_index = 0;
-          for (const [tag_records_index, tag_records_value_list] of Object.entries(_this.search_result_items.sections[current_section_id].tag_records)) {
+          let current_section_id_idx = 0;
+          for (const [section_index, section_list] of Object.entries(_this.search_result_items.sections)) {
+            if (section_list.section_id == current_section_id){
+              current_section_id_idx = section_index;
+            }
+          }
+          for (const [tag_records_index, tag_records_value_list] of Object.entries(_this.search_result_items.sections[current_section_id_idx].tag_records)) {
             if(_this.tag_id == tag_records_value_list.tag_id){
               tag_index = tag_records_index;
               break

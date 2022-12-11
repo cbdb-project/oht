@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/global_var", {data:[{}],fetch:{},mutations:void 0});

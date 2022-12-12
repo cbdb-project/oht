@@ -6,6 +6,10 @@ This is the front-end crowdsourcing platform for the China dynastic histories op
 
 https://github.com/cbdb-project/China-dynastic-histories-open-training-data
 
+## Environment version requirements
+
+NPM 
+
 ## Build Setup
 
 ```bash

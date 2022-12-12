@@ -8,7 +8,9 @@ https://github.com/cbdb-project/China-dynastic-histories-open-training-data
 
 ## Environment version requirements
 
-NPM 
+NPM 14.21.1
+
+NUXT 2.15.7
 
 ## Build Setup
 

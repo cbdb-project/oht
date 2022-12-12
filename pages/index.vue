@@ -459,6 +459,7 @@ export default {
           for (const [section_index, section_list] of Object.entries(_this.search_result_items.sections)) {
             if (section_list.section_id == current_section_id){
               current_section_id_idx = section_index;
+              break
             }
           }
           for (const [tag_records_index, tag_records_value_list] of Object.entries(_this.search_result_items.sections[current_section_id_idx].tag_records)) {

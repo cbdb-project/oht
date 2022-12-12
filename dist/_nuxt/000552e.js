@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{405:function(n,t,o){"use strict";o.r(t);var l={url:"https://oopus.info"},e=o(89),component=Object(e.a)(l,(function(){return(0,this._self._c)("div")}),[],!1,null,null,null);t.default=component.exports}}]);

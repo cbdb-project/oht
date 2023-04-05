@@ -248,12 +248,12 @@ export default {
   },
   methods: {
     put_selection_text_to_content: function() {
-      let selected_text = "";
-      if (window.getSelection) {
+      let selected_text = "";
+      if (window.getSelection) {
           selected_text = window.getSelection().toString();
-      } else if (document.selection && document.selection.type != "Control") {
+      } else if (document.selection && document.selection.type != "Control") {
           selected_text = document.selection.createRange().text;
-      }
+      }
       this.content = selected_text;
       console.log(selected_text);
       navigator.clipboard.writeText(selected_text)
@@ -361,27 +361,6 @@ export default {
       _this.data_subtype_id = 1;
       _this.data_subtype_list = ["1-姓名（[姓] [名]）"];
     },
-    add_data: function(){
-      if (this.content_person_name == undefined){
-        this.content_person_name = ""
-      }
-      if (this.content_personid == undefined){
-        this.content_personid = ""
-      }
-      if (this.content_person_name == undefined){
-        this.content_person_name = ""
-      }
-      let query_url = global_var.url + `/official_hist_tagging/add_main.php?biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&section_id=${this.single_section_id}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
-      // console.log(query_url);
-      let _this = this;
-      axios.get(query_url)
-      .then(function (response) {
-        console.log(response.data);
-        document.getElementById("sbt").click(); 
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
     clear_search_box: function () {
       this.chapter_id = "";
     },
@@ -434,66 +413,89 @@ export default {
       });
     },
     submit_data: function(){
+      let query_url = ""
       if (this.content_person_name == undefined){
-        this.content_person_name = ""
+          this.content_person_name = ""
+        }
+        if (this.content_personid == undefined){
+          this.content_personid = ""
+        }
+        if (this.content_refined == "" || this.content_refined == "null"){
+          this.content_refined = this.content;
       }
-      if (this.content_personid == undefined){
-        this.content_personid = ""
-      }
-      if (this.content_refined == "" || this.content_refined == "null"){
-        this.content_refined = this.content;
-      }
-      if(this.tag_id == "new"){
-        this.add_data();
-        this.overlay = false;
+      if (this.tag_id == "new"){
+        query_url = global_var.url + `/official_hist_tagging/add_main.php?biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&section_id=${this.single_section_id}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
       }else{
-        let query_url = global_var.url + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
-        console.log(query_url);
-        let _this = this;
-        axios.get(query_url)
-        .then(function (response) {
-          console.log(response.data);
-          let current_section_id = parseInt(_this.single_section_id)-1;
-          let tag_index = 0;
-          let current_section_id_idx = 0;
-          for (const [section_index, section_list] of Object.entries(_this.search_result_items.sections)) {
-            if (section_list.section_id == current_section_id){
-              current_section_id_idx = section_index;
-              break
-            }
-          }
-          for (const [tag_records_index, tag_records_value_list] of Object.entries(_this.search_result_items.sections[current_section_id_idx].tag_records)) {
-            if(_this.tag_id == tag_records_value_list.tag_id){
-              tag_index = tag_records_index;
-              break
-            }
-          }
-          // console.log("old_section_id:"+_this.single_section_id);
-          // console.log("current_section_id:"+current_section_id);
-          // console.log("tag_index:"+tag_index);
-          // console.log(_this.search_result_items.sections[current_section_id].tag_records[tag_index]);
-          console.log("start:")
-          console.log("original biog_subject_id:")
-          console.log(_this.search_result_items.sections[current_section_id])
-          console.log("person_id:"+_this.person_id)
-          console.log("tag_index:"+tag_index)
-          console.log("tag_index:"+current_section_id)
-          console.log("end")
-          document.getElementById("sbt").click(); 
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].biog_subject_id = _this.person_id;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].biog_subject_name = _this.person_name;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].content = _this.content;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].subtype = _this.data_subtype_id;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].subtype_chn = _this.data_subtype;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].type = _this.data_type_id;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].subtype_chn = _this.data_type;
-          // _this.search_result_items.sections[current_section_id].tag_records[tag_index].tag_id = _this.tag_id;    
-          _this.overlay = false;
-        }).catch(function (error) {
-          console.log(error);
-        });
+        query_url = global_var.url + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
       }
-      
+      // console.log(query_url);
+      console.log("test_this.content_personid:")
+      console.log(this.content_personid)
+      let url_get_person_name_by_id = global_var.url + "/official_hist_tagging/query_person_name_by_personid.php?person_id=";
+      let _this = this;
+      let perons_id_name_check_passed = "hasn't changed";
+      let content_personid_name_check_passed = "hasn't changed";
+      axios.get(url_get_person_name_by_id + this.person_id)
+      .then(function (response) {
+        console.log("_this.content_personid:")
+        console.log(_this.content_personid)
+        console.log("_this.content_person_name")
+        console.log(_this.content_person_name)
+        console.log(response.data)
+        if (response.data == _this.person_name || _this.person_id == "0" || _this.person_id == ""){
+          perons_id_name_check_passed = true;
+        }else{
+          perons_id_name_check_passed = false;
+        }
+      }).then(function () {
+        return axios.get(url_get_person_name_by_id + _this.content_personid)
+      }).then(
+        function (response) {
+          if (response.data==_this.content_person_name || _this.content_personid == "0" || _this.content_personid == ""){
+            content_personid_name_check_passed = true;
+          }else{
+            content_personid_name_check_passed = false;
+          }
+          if (perons_id_name_check_passed && content_personid_name_check_passed){
+            console.log("check passed")
+            console.log(query_url)
+            return axios.get(query_url).then(function(response){
+                    console.log(response.data);
+                    if (_this.tag_id != "new"){
+                      let current_section_id = parseInt(_this.single_section_id)-1;
+                      let tag_index = 0;
+                      let current_section_id_idx = 0;
+                      for (const [section_index, section_list] of Object.entries(_this.search_result_items.sections)) {
+                        if (section_list.section_id == current_section_id){
+                          current_section_id_idx = section_index;
+                          break
+                        }
+                      }
+                      for (const [tag_records_index, tag_records_value_list] of Object.entries(_this.search_result_items.sections[current_section_id_idx].tag_records)) {
+                        if(_this.tag_id == tag_records_value_list.tag_id){
+                          tag_index = tag_records_index;
+                          break
+                        }
+                      }
+
+                    console.log("start:")
+                    console.log("original biog_subject_id:")
+                    console.log(_this.search_result_items.sections[current_section_id])
+                    console.log("person_id:"+_this.person_id)
+                    console.log("tag_index:"+tag_index)
+                    console.log("tag_index:"+current_section_id)
+                    console.log("end")
+                  }
+                    document.getElementById("sbt").click();    
+                    _this.overlay = false;
+          })
+          }else{
+                console.log(_this.person_id)
+                console.log(_this.person_name)
+                alert("perons_id_name_check_passed: " + perons_id_name_check_passed +";\ncontent_personid_name_check_passed: " + content_personid_name_check_passed + ".")
+          }
+        }
+      )  
     },
     update_data_type: function(e){
       this.data_type_id = e.split("-")[0];

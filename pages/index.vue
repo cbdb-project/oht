@@ -197,14 +197,7 @@
 
       </v-card-text></v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col class="text-center">
-          <span style="color:grey">Context</span><v-divider></v-divider>
-          <h2>{{single_search_result_items.section_context}}</h2>
-      </v-col>
-    </v-row> -->
   </v-overlay>
-    <!-- </v-container> -->
     </v-col></v-row>
  </v-col></v-row>
 </template>
@@ -365,7 +358,6 @@ export default {
       this.chapter_id = "";
     },
     call_search_api: function(){
-      // let query_url = global_var.url+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
       let query_url = global_var.url+"/official_hist_tagging/query_main.php?chapter_id=" + this.chapter_id;
       let _this = this;
       // _this.search_result_items = [{word:"Searching...", content: "", id: 0}]
@@ -428,20 +420,12 @@ export default {
       }else{
         query_url = global_var.url + `/official_hist_tagging/update_main.php?tag_id=${this.tag_id}&biog_subject_id=${this.person_id}&biog_subject_name=${this.person_name}&type=${this.data_type_id}&subtype=${this.data_subtype_id}&content=${this.content}&content_refined=${this.content_refined}&content_personid=${this.content_personid}&content_person_name=${this.content_person_name}`;
       }
-      // console.log(query_url);
-      console.log("test_this.content_personid:")
-      console.log(this.content_personid)
       let url_get_person_name_by_id = global_var.url + "/official_hist_tagging/query_person_name_by_personid.php?person_id=";
       let _this = this;
       let perons_id_name_check_passed = "hasn't changed";
       let content_personid_name_check_passed = "hasn't changed";
       axios.get(url_get_person_name_by_id + this.person_id)
       .then(function (response) {
-        console.log("_this.content_personid:")
-        console.log(_this.content_personid)
-        console.log("_this.content_person_name")
-        console.log(_this.content_person_name)
-        console.log(response.data)
         if (response.data == _this.person_name || _this.person_id == "0" || _this.person_id == ""){
           perons_id_name_check_passed = true;
         }else{
@@ -478,13 +462,13 @@ export default {
                         }
                       }
 
-                    console.log("start:")
-                    console.log("original biog_subject_id:")
-                    console.log(_this.search_result_items.sections[current_section_id])
-                    console.log("person_id:"+_this.person_id)
-                    console.log("tag_index:"+tag_index)
-                    console.log("tag_index:"+current_section_id)
-                    console.log("end")
+                    // console.log("start:")
+                    // console.log("original biog_subject_id:")
+                    // console.log(_this.search_result_items.sections[current_section_id])
+                    // console.log("person_id:"+_this.person_id)
+                    // console.log("tag_index:"+tag_index)
+                    // console.log("tag_index:"+current_section_id)
+                    // console.log("end")
                   }
                     document.getElementById("sbt").click();    
                     _this.overlay = false;
